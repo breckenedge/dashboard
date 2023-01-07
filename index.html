@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Dashboard</title>
+
+    <style>
+      html {
+        background-color: black;
+        color: white;
+        font-family: 'Noto Mono', 'Menlo', monospace;
+      }
+
+      body {
+        height: 100vh;
+        margin: 0;
+      }
+
+      main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      #clock {
+        font-size: 125px;
+        text-shadow: white 0 0 10px;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function setClock(clockEl) {
+        const now = new Date(),
+              hours = now.getHours().toString().padStart(2, '0'),
+              minutes = now.getMinutes().toString().padStart(2, '0'),
+              seconds = now.getSeconds(),
+              separator = seconds % 2 == 0 ? ' ' : ':';
+        clockEl.innerText = [hours, minutes, seconds.toString().padStart(2, '0')].join(separator);
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const clockEl = document.getElementById('clock');
+        window.setInterval(() => setClock(clockEl), 100);
+        setClock(clockEl);
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="clock"></div>
+    </main>
+  </body>
+</html>
